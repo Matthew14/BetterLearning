@@ -9,7 +9,7 @@ How To Run
 
 * install flask, flask-wtf and flask-sqlalchemy
 
-* edit config.py and change the <code>SECRET_KEY</code> value to something secret
+* edit <code>config.py</code> and change the <code>SECRET_KEY</code> value to something secret
 
 * add an initial user:
 
@@ -18,7 +18,7 @@ How To Run
     db.session.commit()
 </code></pre>
 
-* run the `run.py file
+* run the <code>run.py</code> file
 
 * visit <code>http://localhost:5000</code> in your browser and log in with your user
 
