@@ -14,6 +14,7 @@ How To Run
 * add an initial user:
 
 <pre><code>
+    db.create_all()
     db.session.add(models.User(username='admin', role=0, passwordHash=hashlib.sha256('yourAdminPasswordHere').hexdigest()))
     db.session.commit()
 </code></pre>
