@@ -1,0 +1,12 @@
+
+{% extends 'dash.html' %}
+{% block content %}
+{% for message in get_flashed_messages()  %}
+    <div class="alert alert-warning">
+        {{message}}
+        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+    </div>
+{% endfor %}
+<h2>Hello, {{session['username']}}</h2>
+<p>Super secret teacher stuff.</p>
+{%endblock%}
