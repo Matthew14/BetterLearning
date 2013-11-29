@@ -18,9 +18,9 @@ How To Run
     db.session.commit()
 </code></pre>
 
-* run the run.py file
+* run the `run.py file
 
-* visit localhost:5000 in your browser and log in with your user
+* visit <code>http://localhost:5000</code> in your browser and log in with your user
 
 Licences
 --------
