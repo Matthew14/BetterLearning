@@ -26,13 +26,33 @@ def grade(gradeNo=None):
 
     return redirect(url_for('grades'))
 
+@app.route('/quiz/<int:quizNo>/')
+@controller.login_required
+def quiz(quizNo=None):
+    session['total'] = 0
+    return redirect('/quiz/{}/question/{}'.format(quizNo, controller.getFirstQuestion(quizNo)))
+
 @app.route('/quiz/<int:quizNo>/question')
-@app.route('/quiz/<int:quizNo>/question/<int:questionNo>')
+@app.route('/quiz/<int:quizNo>/question/<int:questionNo>', methods = ['GET', 'POST'])
 @controller.login_required
 def question(questionNo=None, quizNo=None):
+    if request.method == 'POST':
+        if controller.isCorrectAnswer(request.form['answerRadio']):
+            session['total'] += 1
+        nextQuestion = controller.getNextQuestion(questionNo, quizNo)
+        if nextQuestion:
+            return redirect('/quiz/{}/question/{}'.format(quizNo, nextQuestion))
+        else:
+            total = session['total']
+            controller.newQuizGrade(total, quizNo)
+            session['total'] = 0
+            numQuestions = controller.getNumberOfQuestions(quizNo)
+            flash("You got {} out of {} correct. ({}%)".format(total, numQuestions, controller.percent(total, numQuestions)))
+            return redirect(url_for('dash'))
     if questionNo and quizNo and controller.questionInQuiz(quizNo, questionNo):
         if controller.getQuestion(questionNo):
-            return render_template('question.html', question=controller.getQuestion(questionNo))
+            return render_template('question.html', question=controller.getQuestion(questionNo), prev=None)
+
     return redirect(url_for('dash'))
 
 @app.route('/dashboard')
