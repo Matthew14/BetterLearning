@@ -35,6 +35,12 @@
                 <h3>Quizzes to take</h3>
             </div>
             <div class="panel-body">
+                <div class="list-group">
+                {% for quiz in quizzes%}
+                        <a href="quiz/{{quiz.id}}" class="list-group-item">
+                            <strong>{{quiz.subject.title()}}</strong> Posted: {{quiz.timestamp.day}}/{{quiz.timestamp.month}}/{{quiz.timestamp.year}}</a>
+                {% endfor %}
+                </div>
             </div>
             <div class="panel-footer">
                 <a href="">View Past</a>
@@ -42,9 +48,9 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="panel panel-info">
+        <div class="panel">
             <div class="panel-heading">
-                <h3>Quizzes to take</h3>
+                <h3>Notifications</h3>
             </div>
             <div class="panel-body">
 

@@ -14,7 +14,6 @@ def index():
 def grades():
     return render_template('grades.html', grades=controller.getGrades())
 
-
 @app.route('/grade')
 @app.route('/grade/<int:gradeNo>')
 @controller.login_required
@@ -27,13 +26,21 @@ def grade(gradeNo=None):
 
     return redirect(url_for('grades'))
 
+@app.route('/quiz/<int:quizNo>/question')
+@app.route('/quiz/<int:quizNo>/question/<int:questionNo>')
+@controller.login_required
+def question(questionNo=None, quizNo=None):
+    if questionNo and quizNo and controller.questionInQuiz(quizNo, questionNo):
+        if controller.getQuestion(questionNo):
+            return render_template('question.html', question=controller.getQuestion(questionNo))
+    return redirect(url_for('dash'))
 
 @app.route('/dashboard')
 @controller.login_required
 def dash():
     title = 'Welcome {}'.format(session['username'].capitalize())
     return render_template('dashTeacher.html', title=title, usertype="teacher") if session['usertype'] == 0 \
-        else render_template('dashStudent.html', title=title, usertype="student", grades=controller.getNumberOfGrades(5))
+        else render_template('dashStudent.html', title=title, usertype="student", grades=controller.getNumberOfGrades(5), quizzes=controller.getQuizes())
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():

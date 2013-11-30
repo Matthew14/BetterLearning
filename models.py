@@ -17,6 +17,7 @@ class User(db.Model):
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key = True)
+    subject = db.Column(db.String(140), default='')
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     questions = db.relationship('Question', backref = 'quiz', lazy = 'dynamic')
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -35,6 +36,7 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key = True)
+    answer = db.Column(db.String(256))
     isCorrect = db.Column(db.Boolean, default=False)
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
 

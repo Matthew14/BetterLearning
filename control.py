@@ -26,6 +26,18 @@ def logout():
 def getGrades():
     return models.User.query.get(session['userId']).grades
 
+def getQuizes():
+    return models.Quiz.query.all()
+
+def getQuestion(questionNo):
+    return models.Question.query.get(questionNo)
+def questionInQuiz(quizNo, questionNo):
+    quiz = models.Quiz.query.get(quizNo)
+    if quiz:
+        for ans in quiz.questions:
+            if ans.id == questionNo:
+                return True
+    return False
 def getNumberOfGrades(num):
     #TODO: make less hacky
     res = getGrades()
