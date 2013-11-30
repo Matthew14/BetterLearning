@@ -111,8 +111,8 @@ def addStudent(username, password):
         return True
     except:
         return False
-
     return True
+
 def student_required(test):
     @wraps(test)
     def wrap(*args, **kwargs):
@@ -122,6 +122,7 @@ def student_required(test):
             flash('You need to be a student to view that.')
             return redirect(url_for('dash'))
     return wrap
+
 def teacher_required(test):
     @wraps(test)
     def wrap(*args, **kwargs):

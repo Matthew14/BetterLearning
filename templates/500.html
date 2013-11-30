@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content %}
+<div class="row">
+    <div class=col-lg-6>
+        <h2>500 Error</h2><hr>
+        <p>Something's not right.
+            Why not <a href="{{url_for('index')}}">Return Home</a> and try again?</p>
+    </div>
+    <div class=col-lg-6>
+        <img src="{{url_for('static', filename='images/fwp.jpg')}}" class="img-circle img-responsive">
+    </div>
+
+</div>
+{%endblock%}
