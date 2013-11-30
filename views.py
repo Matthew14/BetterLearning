@@ -1,5 +1,5 @@
 from flask import render_template, redirect, session, request, flash, url_for
-from forms import LoginForm
+from forms import LoginForm, AddStudentForm
 from app import app
 import control as controller
 
@@ -59,8 +59,29 @@ def question(questionNo=None, quizNo=None):
 @controller.login_required
 def dash():
     title = 'Welcome {}'.format(session['username'].capitalize())
-    return render_template('dashTeacher.html', title=title, usertype="teacher") if session['usertype'] == 0 \
-        else render_template('dashStudent.html', title=title, usertype="student", grades=controller.getNumberOfGrades(5), quizzes=controller.getQuizes())
+    if session['usertype'] == 0:
+        return render_template('dashTeacher.html', title=title, usertype="teacher", students=controller.getStudents(), quizzes=controller.getQuizes())
+    else:
+        return render_template('dashStudent.html', title=title, usertype="student", grades=controller.getNumberOfGrades(5), quizzes=controller.getQuizes())
+
+@app.route('/addstudent', methods = ['GET', 'POST'])
+@controller.login_required
+@controller.teacher_required
+def addStudent():
+    error = None
+    form = AddStudentForm()
+    if form.validate_on_submit():
+        if controller.addStudent(form.nameField.data, form.pwordField.data):
+            flash("Successfully added student {}".format(form.nameField.data))
+            return redirect('dashboard')
+        else:
+            error = 'A user with that username already exists'
+    elif request.method =='POST':
+        error = 'All fields are required.'
+    return render_template('addStudent.html',
+        title = 'Add a Student',
+        form = form,
+        error = error)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():

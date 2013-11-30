@@ -99,6 +99,20 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 
+def getStudents():
+    return models.User.query.filter_by(role=1).all()
+
+def addStudent(username, password):
+    try:
+        password = hashlib.sha256(password).hexdigest()
+        user = models.User(username=username, passwordHash=password)
+        db.session.add(user)
+        db.session.commit()
+        return True
+    except:
+        return False
+
+    return True
 def student_required(test):
     @wraps(test)
     def wrap(*args, **kwargs):
@@ -106,5 +120,14 @@ def student_required(test):
             return test(*args, **kwargs)
         else:
             flash('You need to be a student to view that.')
+            return redirect(url_for('dash'))
+    return wrap
+def teacher_required(test):
+    @wraps(test)
+    def wrap(*args, **kwargs):
+        if 'usertype' in session and session['usertype'] == 0:
+            return test(*args, **kwargs)
+        else:
+            flash('You need to be a teacher to view that.')
             return redirect(url_for('dash'))
     return wrap
