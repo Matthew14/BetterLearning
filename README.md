@@ -2,7 +2,7 @@ BetterLearning
 ==============
 
 An online education web application created for my 3rd year Business and Enterprise module
-using the [Flask] ("http://flask.pocoo.org/") framework and twitter [Bootstrap]("http://www.getbootstrap.com").
+using the [Flask] (http://flask.pocoo.org/) framework and twitter [Bootstrap](http://www.getbootstrap.com).
 
 A live version is running [here](http://betterlearning.matthewoneill.com).
 
@@ -33,6 +33,6 @@ How To Run
 
 Licences
 --------
-[Flask]("http://flask.pocoo.org/docs/license/")
+[Flask](http://flask.pocoo.org/docs/license/)
 
-[Bootstrap]("http://www.apache.org/licenses/LICENSE-2.0")
+[Bootstrap](http://www.apache.org/licenses/LICENSE-2.0)
