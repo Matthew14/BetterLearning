@@ -2,3 +2,4 @@ db_create.py
 *.pyc
 *.txt
 *.db
+env/
