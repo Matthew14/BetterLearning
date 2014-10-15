@@ -8,9 +8,9 @@ A live version is running [here](http://betterlearning.matthewoneill.com).
 
 Screenshots
 -----------
-![grades]("http://www.matthewoneill.com/files/grades.png")
-![quiz]("http://www.matthewoneill.com/files/quiz.png")
-![mobile]("http://www.matthewoneill.com/uploads/mobileView.png")
+![grades](http://www.matthewoneill.com/uploads/grades.png)
+![quiz](http://www.matthewoneill.com/uploads/quiz.png)
+![mobile](http://www.matthewoneill.com/uploads/mobileView.png)
 
 How To Run
 ----------
