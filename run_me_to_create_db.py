@@ -1,6 +1,6 @@
 #!flask/bin/python
-from app import db, models
-
+from app import db
+import models
 db.create_all()
 
 

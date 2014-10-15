@@ -1,6 +1,7 @@
 from flask import session, flash, redirect, url_for
 from functools import wraps
-from app import db, models
+from app import db
+import models
 import hashlib
 
 def login(username, password):
