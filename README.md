@@ -4,7 +4,16 @@ BetterLearning
 An online education web application created for my 3rd year Business and Enterprise module
 using the [Flask] ("http://flask.pocoo.org/") framework and twitter [Bootstrap]("http://www.getbootstrap.com").
 
+
+Try it out
+----------
+
 A live version is running [here](http://betterlearning.matthewoneill.com).
+
+Login with the follwing details:
+
+Username: student2
+Password: student2Pass
 
 Screenshots
 -----------
